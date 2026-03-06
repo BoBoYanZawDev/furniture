@@ -1,14 +1,18 @@
-import MainNavigation from "./MainNavigation"
-import { siteConfig } from "@/configs/site"
+import MainNavigation from "./MainNavigation";
+import { siteConfig } from "@/configs/site";
 
 function Header() {
+  const titleData = {
+    title: siteConfig.name,
+    description: siteConfig.description,
+  };
   return (
     <header className="w-full border-b">
-      <div className="container flex items-center h-16 mx-auto">
-       <MainNavigation />
-      </div>
+      <nav className="container mx-auto flex h-16 items-center">
+        <MainNavigation items={siteConfig.mainNav} titleData={titleData} />
+      </nav>
     </header>
-  )
+  );
 }
 
-export default Header
+export default Header;

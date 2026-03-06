@@ -8,12 +8,12 @@ import { createBrowserRouter } from "react-router";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <RootLayout />,
+    Component: RootLayout,
     errorElement : <Error />,
     children: [
-      { index: true, element: <Home /> },
-      { path: "contact", element: <Contact /> },
-      { path: "*", element: <NotFound /> }
+      { index: true, Component: Home },
+      { path: "contact", Component: Contact },
+      { path: "*", Component: NotFound }
     ],
   },
 ]);
