@@ -9,11 +9,11 @@ const router = createBrowserRouter([
   {
     path: "/",
     Component: RootLayout,
-    errorElement : <Error />,
+    ErrorBoundary: Error,
     children: [
       { index: true, Component: Home },
       { path: "contact", Component: Contact },
-      { path: "*", Component: NotFound }
+      { path: "*", Component: NotFound },
     ],
   },
 ]);

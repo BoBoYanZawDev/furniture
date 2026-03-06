@@ -23,7 +23,7 @@ export default function MainNavigation({
   titleData,
 }: mainNavigationProps) {
   let firstNavItem = items?.[0];
-  console.log(items);
+
   return (
     <div className="hidden gap-6 lg:flex lg:items-center">
       <Link to="/" className="flex items-center space-x-2">
