@@ -1,5 +1,5 @@
 import RootLayout from "@/layouts/RootLayout";
-import Contact from "@/pages/Contact";
+import About from "@/pages/About";
 import Home from "@/pages/Home";
 import Error from "@/pages/errors/Error";
 import NotFound from "@/pages/errors/NotFound";
@@ -12,7 +12,7 @@ const router = createBrowserRouter([
     ErrorBoundary: Error,
     children: [
       { index: true, Component: Home },
-      { path: "contact", Component: Contact },
+      { path: "about", Component: About },
       { path: "*", Component: NotFound },
     ],
   },
