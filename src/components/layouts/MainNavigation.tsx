@@ -69,15 +69,17 @@ export default function MainNavigation({
               </NavigationMenuContent>
             </NavigationMenuItem>
           )}
-          {firstNavItem?.menu && firstNavItem.menu.map((item) => (
-            <NavigationMenuItem key={item.title}>
-              <Link to={String(item.href)}>
-                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                  {item.title}
+          {firstNavItem?.menu &&
+            firstNavItem.menu.map((item) => (
+              <NavigationMenuItem key={item.title}>
+                <NavigationMenuLink
+                  asChild
+                  className={navigationMenuTriggerStyle()}
+                >
+                  <Link to={String(item.href)}>{item.title}</Link>
                 </NavigationMenuLink>
-              </Link>
-            </NavigationMenuItem>
-          ))}
+              </NavigationMenuItem>
+            ))}
         </NavigationMenuList>
       </NavigationMenu>
     </div>

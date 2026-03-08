@@ -4,14 +4,14 @@ import { Button } from "@/components/ui/button";
 
 function NotFound() {
   return (
-    <main className="min-h-[calc(100vh-4rem)] bg-[#f4f4f4] text-slate-950 dark:bg-slate-950 dark:text-white">
-      <section className="mx-auto flex min-h-[calc(100vh-4rem)] max-w-5xl flex-col items-center justify-center px-6 py-16 text-center">
+    <main className="h-full bg-[#f4f4f4] text-slate-950 dark:bg-slate-950 dark:text-white">
+      <section className="mx-auto flex h-full max-w-5xl flex-col items-center justify-center px-6 py-16 text-center">
         <div className="w-full max-w-3xl">
           <div
             style={{
               display: "flex",
-              justifyContent: "center", 
-              alignItems: "center", 
+              justifyContent: "center",
+              alignItems: "center",
             }}
           >
             <DotLottieReact
