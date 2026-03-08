@@ -1,11 +1,10 @@
-
+import { useParams } from "react-router";
 
 function BlogDetail() {
-  return (
-    <div>
-      
-    </div>
-  )
+  const { postId } = useParams();
+  return <div>
+    Blog Detail : {postId}
+  </div>;
 }
 
-export default BlogDetail
+export default BlogDetail;

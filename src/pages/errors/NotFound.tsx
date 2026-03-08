@@ -7,12 +7,23 @@ function NotFound() {
     <main className="min-h-[calc(100vh-4rem)] bg-[#f4f4f4] text-slate-950 dark:bg-slate-950 dark:text-white">
       <section className="mx-auto flex min-h-[calc(100vh-4rem)] max-w-5xl flex-col items-center justify-center px-6 py-16 text-center">
         <div className="w-full max-w-3xl">
-          <DotLottieReact
-            src="/404 not found.json"
-            loop
-            autoplay
-            style={{ width: "100%", height: "100%", minHeight: 320 }}
-          />
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center", 
+              alignItems: "center", 
+            }}
+          >
+            <DotLottieReact
+              src="/animation_icon/404 not found.json"
+              loop
+              autoplay
+              style={{
+                width: "100%",
+                height: "100%",
+              }}
+            />
+          </div>
         </div>
 
         <div className="mt-6 max-w-4xl">
@@ -28,8 +39,8 @@ function NotFound() {
             >
               homepage
             </Link>{" "}
-            that does exist, or explore the rest of the site from the
-            navigation above.
+            that does exist, or explore the rest of the site from the navigation
+            above.
           </p>
 
           <div className="mt-8">
