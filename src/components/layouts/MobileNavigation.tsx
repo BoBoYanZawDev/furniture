@@ -16,6 +16,7 @@ import {
 import type { MainNavItem, NavItemOrg } from "@/types";
 import { Icons } from "@/components/icons";
 import { ScrollArea } from "../ui/scroll-area";
+import { useEffect, useState } from "react";
 
 interface mainNavigationProps {
   items?: MainNavItem[];
@@ -23,6 +24,21 @@ interface mainNavigationProps {
 }
 
 function MobileNavigation({ items, titleData }: mainNavigationProps) {
+  const [isDesktop, setIsDesktop] = useState<boolean>(false);
+  const query = "(min-width:1024px)";
+  useEffect(() => {
+    function onChange(event: MediaQueryListEvent) {
+      setIsDesktop(event.matches);
+    }
+    const result = matchMedia(query);
+    result.addEventListener("change", onChange);
+    return () => result.removeEventListener("change", onChange);
+  }, [query]);
+
+  if (isDesktop) {
+    return null;
+  }
+
   let firstNavItem = items?.[0];
   return (
     <div className="lg:hidden">
@@ -33,7 +49,7 @@ function MobileNavigation({ items, titleData }: mainNavigationProps) {
             <span className="sr-only">Toggle Menu</span>
           </Button>
         </SheetTrigger>
-        <SheetContent side="left" className="px-4 pt-9 max-w-screen">
+        <SheetContent side="left" className="max-w-screen px-4 pt-9">
           <SheetClose asChild>
             <Link to="/" className="flex items-center">
               <Icons.logo className="mr-2 size-6" aria-hidden="true" />
@@ -44,7 +60,9 @@ function MobileNavigation({ items, titleData }: mainNavigationProps) {
           <ScrollArea className="h-[calc(100vh - 8rem)] my-4 pb-8">
             <Accordion type="multiple" className="w-full">
               <AccordionItem value="item-1">
-                <AccordionTrigger className="bg-slate-100/60 px-1">{firstNavItem?.title}</AccordionTrigger>
+                <AccordionTrigger className="bg-slate-100/60 px-1">
+                  {firstNavItem?.title}
+                </AccordionTrigger>
                 <AccordionContent>
                   <div className="flex flex-col space-y-2">
                     {firstNavItem?.card?.map((item) => (
@@ -68,7 +86,7 @@ function MobileNavigation({ items, titleData }: mainNavigationProps) {
                   <Link
                     key={item2.title}
                     to={String(item2.href)}
-                    className="block rounded-md py-2 px-1 text-sm font-medium bg-slate-100/60"
+                    className="block rounded-md bg-slate-100/60 px-1 py-2 text-sm font-medium"
                   >
                     {item2.title}
                   </Link>

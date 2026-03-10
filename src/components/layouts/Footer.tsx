@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { siteConfig } from "@/configs/site";
 import { Icons } from "@/components/icons";
-import NewsLetterForm from "../new-letter";
+import NewsLetterForm from "../news-letter";
 
 function Footer() {
   const footerNav = siteConfig.footerNav || [];
@@ -37,7 +37,8 @@ function Footer() {
               </div>
             ))}
           </section>
-          <section>
+          <section className="space-y-3">
+            <h4 className=" font-medium">Subscribe to our newsletter</h4>
           <NewsLetterForm />
           </section>
         </section>
