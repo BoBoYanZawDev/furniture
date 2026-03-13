@@ -9,11 +9,11 @@ function Header() {
     description: siteConfig.description,
   };
   return (
-    <header className="w-full border-b">
+    <header className="fixed top-0 z-50 w-full border-b bg-white/90 dark:bg-black/90">
       <nav className="container mx-auto flex h-16 items-center justify-between">
-          <MainNavigation items={siteConfig.mainNav} titleData={titleData} />
-          <MobileNavigation items={siteConfig.mainNav} titleData={titleData} />
-        <div className="flex items-center space-x-4 me-8 lg:me-0">
+        <MainNavigation items={siteConfig.mainNav} titleData={titleData} />
+        <MobileNavigation items={siteConfig.mainNav} titleData={titleData} />
+        <div className="me-8 flex items-center space-x-4 lg:me-0">
           <ModeToggle />
         </div>
       </nav>

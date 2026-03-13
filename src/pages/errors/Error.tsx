@@ -2,13 +2,15 @@ import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import { Link } from "react-router";
 import { Button } from "@/components/ui/button";
 import Footer from "@/components/layouts/Footer";
+import Header from "@/components/layouts/Header";
 
 function Error() {
   return (
-    <div className="flex min-h-screen flex-col bg-[#f4f4f4] text-slate-950 dark:bg-slate-950 dark:text-white">
-      <main className="flex-1">
+    <div className="flex min-h-screen flex-col bg-[#f4f4f4] text-slate-950 dark:bg-slate-950 dark:text-white overflow-hidden">
+      <Header />
+      <main className="flex-1 my-20">
         <section className="mx-auto flex h-full max-w-5xl flex-col items-center justify-center px-6 py-16 text-center">
-          <div className="w-full max-w-3xl">
+          <div className="w-full max-w-xl">
             <div
               style={{
                 display: "flex",
@@ -21,8 +23,8 @@ function Error() {
                 loop
                 autoplay
                 style={{
-                  width: "100%",
-                  height: "100%",
+                  width: "90%",
+                  height: "90%",
                 }}
               />
             </div>

@@ -16,7 +16,7 @@ function Footer() {
               <span className="sr-only">Home</span>
             </Link>
           </section>
-          <section className="grid grid-cols-2 gap-10 md:grid-cols-4 lg:grid-cols-4">
+          <section className="grid grid-cols-2 gap-10 lg:gap-20 md:grid-cols-4 lg:grid-cols-4">
             {footerNav.map((data) => (
               <div key={data.title} className="space-y-3">
                 <h4 className="font-medium">{data.title}</h4>

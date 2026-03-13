@@ -24,7 +24,7 @@ const router = createBrowserRouter([
           { path: ":postId", Component: BlogDetailPage },
         ],
       },
-      { path: "*", Component: NotFound },
+      // { path: "*", Component: NotFound },
     ],
   },
 ]);
