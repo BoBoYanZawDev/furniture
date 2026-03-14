@@ -6,8 +6,10 @@ import { products } from "@/data/products";
 import Title from "@/components/Title";
 import BlogCard from "@/components/blogs/BlogCard";
 import { posts } from "@/data/posts";
+import ProductCard from "@/components/products/ProductCard";
 function Home() {
   const recentBlogs = posts.slice(0, 3);
+  const featProduct = products.slice(0, 3);
   return (
     <div className="container mx-auto">
       {/* hero section */}
@@ -43,6 +45,20 @@ function Home() {
 
       {/*product Carousel */}
       <CarouselCard products={products} />
+
+      {/* blogs section */}
+      <section className="production-section">
+        <Title
+          title="Featured Products"
+          href="/products"
+          sideText="View All Products"
+        />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+        {featProduct.map((product) => (
+            <ProductCard product={product}  key={product.id}/>
+        ))}
+        </div>
+      </section>
 
       {/* blogs section */}
       <section className="blog-section">
