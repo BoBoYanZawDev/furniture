@@ -1,4 +1,9 @@
-import { HamburgerMenuIcon, HomeIcon ,PaperPlaneIcon } from "@radix-ui/react-icons";
+import {
+  HamburgerMenuIcon,
+  HomeIcon,
+  PaperPlaneIcon,
+} from "@radix-ui/react-icons";
+import { ArrowLeftIcon } from "lucide-react";
 
 export type IconProps = React.HTMLAttributes<SVGElement>;
 
@@ -21,5 +26,6 @@ export const Icons = {
   ),
   home: HomeIcon,
   menu: HamburgerMenuIcon,
- paperPlane : PaperPlaneIcon
+  paperPlane: PaperPlaneIcon,
+  arrowLeft: ArrowLeftIcon,
 };

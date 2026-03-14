@@ -37,3 +37,7 @@ export type Post = {
   updated_at: string;
   tags: string[];
 };
+
+export type postProps = {
+  posts: Post[];
+};

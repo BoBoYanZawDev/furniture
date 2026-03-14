@@ -9,7 +9,7 @@ import { posts } from "@/data/posts";
 function Home() {
   const recentBlogs = posts.slice(0, 3);
   return (
-    <div className="container mx-auto px-4 md:px-0">
+    <div className="container mx-auto">
       {/* hero section */}
       <section className="flex flex-col justify-between lg:flex-row">
         {/* Text Section */}

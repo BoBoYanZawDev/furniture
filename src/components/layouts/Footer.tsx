@@ -8,28 +8,28 @@ function Footer() {
   return (
     <footer className="ml-4 w-full border-t lg:ml-0">
       <div className="container mx-auto pt-6 pb-8 lg:py-6">
-        <section className="flex flex-col gap-10 lg:flex-row lg:gap-20">
+        <section className="flex flex-col gap-10 lg:flex-row lg:justify-between lg:gap-20">
           <section>
             <Link to="/" className="flex items-center space-x-2">
-              <Icons.logo className="size-7" aria-hidden="true" />
-              <span className="inline-block font-bold">{siteConfig.name}</span>
+              <Icons.logo className="size-6" aria-hidden="true" />
+              <span className="font-bold">{siteConfig.name}</span>
               <span className="sr-only">Home</span>
             </Link>
           </section>
-          <section className="grid grid-cols-2 gap-10 lg:gap-20 md:grid-cols-4 lg:grid-cols-4">
+          <section className="grid grid-cols-2 gap-10 md:grid-cols-4 lg:grid-cols-4">
             {footerNav.map((data) => (
               <div key={data.title} className="space-y-3">
                 <h4 className="font-medium">{data.title}</h4>
-                <ul className="space-y-4">
-                  {data.items.map((itemData) => (
-                    <li key={itemData.title}>
+                <ul className="">
+                  {data.items.map((item) => (
+                    <li key={item.title}>
                       <Link
-                        to={itemData.href}
+                        to={item.href}
+                        target={item.external ? "_blank" : undefined}
                         className="text-muted-foreground hover:text-foreground text-sm"
-                        target={itemData.external ? "_blank" : undefined}
                       >
-                        {itemData.title}
-                        <span className="sr-only">{itemData.title}</span>
+                        {item.title}
+                        <span className="sr-only">{item.title}</span>
                       </Link>
                     </li>
                   ))}
@@ -38,8 +38,8 @@ function Footer() {
             ))}
           </section>
           <section className="space-y-3">
-            <h4 className=" font-medium">Subscribe to our newsletter</h4>
-          <NewsLetterForm />
+            <h4 className="font-medium">Subscribe to our newsletter</h4>
+            <NewsLetterForm />
           </section>
         </section>
       </div>

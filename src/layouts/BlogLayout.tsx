@@ -1,10 +1,7 @@
+import { Outlet } from "react-router";
 
 function BlogLayout() {
-  return (
-    <div>
-      
-    </div>
-  )
+  return <Outlet />;
 }
 
-export default BlogLayout
+export default BlogLayout;

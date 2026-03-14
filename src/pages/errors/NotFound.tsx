@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 
 function NotFound() {
   return (
-    <main className="h-full bg-[#f4f4f4] text-slate-950 dark:bg-slate-950 dark:text-white">
+    <main className="h-full  text-slate-950 dark:bg-slate-950 dark:text-white">
       <section className="mx-auto flex h-full max-w-5xl flex-col items-center justify-center px-6 py-16 text-center">
         <div className="w-full max-w-3xl">
           <div
