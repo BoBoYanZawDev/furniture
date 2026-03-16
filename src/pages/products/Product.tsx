@@ -1,11 +1,30 @@
-
+import { products, filterList } from "@/data/products";
+import ProductCard from "@/components/products/ProductCard";
+import ProductFilter from "@/components/products/ProductFilter";
+import Pagination from "@/components/products/Pagination";
 
 function Product() {
   return (
-    <div>
-      
+    <div className="container mx-auto">
+      <section className="my-8  flex flex-col lg:ml-0 lg:flex-row">
+        <section className="w-full lg:w-1/5">
+          <ProductFilter
+            title="Furnitures Make By"
+            filterList={filterList}
+          />
+        </section>
+        <section className="w-full lg:w-4/5">
+          <h1 className="text-2xl font-bold mb-8">All Products</h1>
+          <div className="mb-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {products.map((product) => (
+              <ProductCard product={product} key={product.id} />
+            ))}
+          </div>
+          <Pagination />
+        </section>
+      </section>
     </div>
-  )
+  );
 }
 
-export default Product
+export default Product;

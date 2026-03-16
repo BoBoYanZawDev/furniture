@@ -9,7 +9,7 @@ import { posts } from "@/data/posts";
 import ProductCard from "@/components/products/ProductCard";
 function Home() {
   const recentBlogs = posts.slice(0, 3);
-  const featProduct = products.slice(0, 3);
+  const featProduct = products.slice(0, 4);
   return (
     <div className="container mx-auto">
       {/* hero section */}
@@ -53,7 +53,7 @@ function Home() {
           href="/products"
           sideText="View All Products"
         />
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {featProduct.map((product) => (
             <ProductCard product={product}  key={product.id}/>
         ))}

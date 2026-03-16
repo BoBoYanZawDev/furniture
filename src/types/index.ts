@@ -41,3 +41,10 @@ export type Post = {
 export type postProps = {
   posts: Post[];
 };
+
+
+// for product
+export type Category = {
+  id: string;
+  label: string;
+};
