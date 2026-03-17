@@ -1,9 +1,11 @@
 import {
   HamburgerMenuIcon,
+  HeartIcon,
   HomeIcon,
   LayersIcon,
   PaperPlaneIcon,
   PlusIcon,
+  StarIcon,
 } from "@radix-ui/react-icons";
 import { ArrowLeftIcon } from "lucide-react";
 
@@ -32,4 +34,6 @@ export const Icons = {
   arrowLeft: ArrowLeftIcon,
   layers: LayersIcon,
   plus: PlusIcon,
+  star: StarIcon,
+  heart: HeartIcon,
 };

@@ -11,16 +11,18 @@ import {
 import { Button } from "../ui/button";
 import { Link } from "react-router";
 import { AspectRatio } from "../ui/aspect-ratio";
-import { formatPrice } from "@/lib/utils";
+import { cn, formatPrice } from "@/lib/utils";
 
-interface productProp {
+interface productProp extends React.HtmlHTMLAttributes<HTMLDivElement> {
   product: Product;
 }
 
-function ProductCard({ product }: productProp) {
+function ProductCard({ product, className }: productProp) {
   return (
-    <Card className="size-full overflow-hidden rounded-lg py-0">
-      <Link to={`products/${product.id}`} aria-label={product.name}>
+    <Card
+      className={cn("size-full overflow-hidden rounded-lg py-0", className)}
+    >
+      <Link to={`/products/${product.id}`} aria-label={product.name}>
         <CardHeader className="border-b p-0">
           <AspectRatio ratio={1 / 1} className="bg-muted">
             <img

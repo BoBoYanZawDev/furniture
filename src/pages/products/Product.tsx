@@ -1,7 +1,7 @@
 import { products, filterList } from "@/data/products";
 import ProductCard from "@/components/products/ProductCard";
 import ProductFilter from "@/components/products/ProductFilter";
-import Pagination from "@/components/products/Pagination";
+import Pagination from "@/components/products/PaginationBottom";
 
 function Product() {
   return (
@@ -9,7 +9,6 @@ function Product() {
       <section className="my-8  flex flex-col lg:ml-0 lg:flex-row">
         <section className="w-full lg:w-1/5">
           <ProductFilter
-            title="Furnitures Make By"
             filterList={filterList}
           />
         </section>
