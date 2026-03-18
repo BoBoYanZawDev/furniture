@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 interface FavouriteProp extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   productId: string;
   rating: number;
-  isFavourite: boolean;
+  // isFavourite: boolean;
 }
 
 function AddToFavourite({

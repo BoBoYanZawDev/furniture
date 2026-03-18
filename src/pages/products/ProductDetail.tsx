@@ -15,6 +15,13 @@ import { Separator } from "@/components/ui/separator";
 import { formatPrice } from "@/lib/utils";
 import Rating from "@/components/products/Rating";
 import AddToFavourite from "@/components/products/AddToFavourite";
+import AddToCartForm from "@/components/products/AddToCartForm";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 function ProductDetail() {
   const { productId } = useParams();
@@ -65,8 +72,28 @@ function ProductDetail() {
           </p>
           <div className="flex items-center justify-between">
             <Rating rating={Number(product?.rating)} />
-            <AddToFavourite productId={String(productId)} />
+            <AddToFavourite
+              productId={String(productId)}
+              rating={Number(product?.rating)}
+            />
           </div>
+          <AddToCartForm canBuy={product?.status === "active"} />
+          <Separator className="my-5" />
+
+          <Accordion
+            type="single"
+            collapsible
+            className="w-full"
+            defaultValue="description"
+          >
+            <AccordionItem value="description" className="border-none">
+              <AccordionTrigger>Description</AccordionTrigger>
+              <AccordionContent>
+                {product?.description ??
+                  "No description is avaliable for this product."}
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
         </div>
       </section>
       <section className="space-y-6 overflow-hidden">
