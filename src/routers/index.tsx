@@ -2,13 +2,7 @@ import RootLayout from "@/layouts/RootLayout";
 import HomePage from "@/pages/Home";
 import ErrorPage from "@/pages/errors/Error";
 import { createBrowserRouter } from "react-router";
-import BlogPage from "@/pages/blogs/Blog";
-import AboutPage from "@/pages/About";
-import BlogDetailPage from "@/pages/blogs/BlogDetail";
-import BlogLayout from "@/layouts/BlogLayout";
-import ProductRootLayout from "@/layouts/ProductRootLayout";
-import ProductPage from "@/pages/products/Product";
-import ProductDetailPage from "@/pages/products/ProductDetail";
+import { lazyRoute } from "./helper";
 
 const router = createBrowserRouter([
   {
@@ -17,23 +11,42 @@ const router = createBrowserRouter([
     ErrorBoundary: ErrorPage,
     children: [
       { index: true, Component: HomePage },
-      { path: "about", Component: AboutPage },
+
+      {
+        path: "about",
+        ...lazyRoute(() => import("@/pages/About")),
+      },
+
       {
         path: "blogs",
-        Component: BlogLayout,
+        ...lazyRoute(() => import("@/layouts/BlogLayout")),
         children: [
-          { index: true, Component: BlogPage },
-          { path: ":postId", Component: BlogDetailPage },
+          {
+            index: true,
+            ...lazyRoute(() => import("@/pages/blogs/Blog")),
+          },
+          {
+            path: ":postId",
+            ...lazyRoute(() => import("@/pages/blogs/BlogDetail")),
+          },
         ],
       },
+
       {
         path: "products",
-        Component: ProductRootLayout,
+        ...lazyRoute(() => import("@/layouts/ProductRootLayout")),
         children: [
-          { index: true, Component: ProductPage },
-          { path: ":productId", Component: ProductDetailPage },
+          {
+            index: true,
+            ...lazyRoute(() => import("@/pages/products/Product")),
+          },
+          {
+            path: ":productId",
+            ...lazyRoute(() => import("@/pages/products/ProductDetail")),
+          },
         ],
       },
+
       // { path: "*", Component: NotFound },
     ],
   },

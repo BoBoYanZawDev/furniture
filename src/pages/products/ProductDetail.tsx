@@ -65,7 +65,7 @@ function ProductDetail() {
           </p>
           <div className="flex items-center justify-between">
             <Rating rating={Number(product?.rating)} />
-            <AddToFavourite />
+            <AddToFavourite productId={String(productId)} />
           </div>
         </div>
       </section>
