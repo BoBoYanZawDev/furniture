@@ -50,6 +50,14 @@ const router = createBrowserRouter([
       // { path: "*", Component: NotFound },
     ],
   },
+  {
+    path: "/login",
+    ...lazyRoute(() => import("@/pages/auth/Login")),
+  },
+  {
+    path: "/register",
+    ...lazyRoute(() => import("@/pages/auth/Register")),
+  },
 ]);
 
 export default router;

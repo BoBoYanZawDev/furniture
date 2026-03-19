@@ -1,0 +1,34 @@
+import { Icons } from "@/components/icons";
+import { Link } from "react-router-dom";
+import Banner from "@/data/images/house.webp";
+import LoginForm from "@/components/auth/LoginForm";
+import { siteConfig } from "@/configs/site";
+
+function Login() {
+  return (
+    <div className="relative overflow-hidden">
+      <Link
+        to="/"
+        className="top-6 text-foreground/80 hover:text-foreground transition-color fixed left-8 flex items-center text-lg font-bold tracking-tight"
+      >
+        <Icons.logo className="mr-2 size-6" aria-hidden="true" />
+        <span>{siteConfig?.name}</span>
+        <span className="sr-only">Home</span>
+      </Link>
+      <main className="grid min-h-screen grid-cols-1 lg:grid-cols-2">
+        <div className="flex w-full place-items-center px-4">
+          <LoginForm />
+        </div>
+        <div className="relative hidden lg:block">
+          <img
+            src={Banner}
+            alt="Frurniture Shop"
+            className="absolute inset-0 h-full w-full object-cover"
+          />
+        </div>
+      </main>
+    </div>
+  );
+}
+
+export default Login;
