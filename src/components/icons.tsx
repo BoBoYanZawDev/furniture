@@ -1,4 +1,7 @@
 import {
+  DashboardIcon,
+  ExitIcon,
+  GearIcon,
   HamburgerMenuIcon,
   HeartIcon,
   HomeIcon,
@@ -38,4 +41,7 @@ export const Icons = {
   minus: MinusIcon,
   star: StarIcon,
   heart: HeartIcon,
+  dashboard: DashboardIcon,
+  gear: GearIcon,
+  exit: ExitIcon,
 };

@@ -2,7 +2,8 @@ import MainNavigation from "./MainNavigation";
 import { siteConfig } from "@/configs/site";
 import MobileNavigation from "./MobileNavigation";
 import { ModeToggle } from "../mode-toggle";
-
+import AuthDropDown from "@/components/layouts/AuthDropDown";
+import { User } from "@/data/user";
 function Header() {
   const titleData = {
     title: siteConfig.name,
@@ -15,6 +16,7 @@ function Header() {
         <MobileNavigation items={siteConfig.mainNav} titleData={titleData} />
         <div className="me-8 flex items-center space-x-4 lg:me-0">
           <ModeToggle />
+          <AuthDropDown user={User} />
         </div>
       </nav>
     </header>
