@@ -10,6 +10,7 @@ import {
   PaperPlaneIcon,
   PlusIcon,
   StarIcon,
+  TrashIcon,
 } from "@radix-ui/react-icons";
 import { ArrowLeftIcon } from "lucide-react";
 
@@ -60,4 +61,5 @@ export const Icons = {
   dashboard: DashboardIcon,
   gear: GearIcon,
   exit: ExitIcon,
+  trash: TrashIcon,
 };

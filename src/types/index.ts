@@ -56,3 +56,19 @@ export type User = {
   email: string;
   imageUrl: string;
 };
+
+export type CartImg = {
+  id: string;
+  name: string;
+  url: string;
+};
+
+export type Cart = {
+  id: string;
+  name: string;
+  price: number;
+  quantity: number;
+  image: CartImg;
+  category: string;
+  subcategory: string;
+};

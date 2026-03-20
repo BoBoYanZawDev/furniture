@@ -12,6 +12,10 @@ import { Icons } from "../icons";
 import { Badge } from "../ui/badge";
 import { Separator } from "../ui/separator";
 import { cartItems } from "@/data/carts";
+import { Link } from "react-router";
+import CartItem from "../carts/CartItem";
+import { ScrollArea } from "../ui/scroll-area";
+import { formatPrice } from "@/lib/utils";
 function CartSheet() {
   const itemCount = 4;
   const amountTotal = 190;
@@ -41,8 +45,44 @@ function CartSheet() {
           </SheetTitle>
         </SheetHeader>
         <Separator />
-        {cartItems.length < 0 ? (
-          <div>loading</div>
+        {cartItems.length > 0 ? (
+          <>
+            <ScrollArea className="my-4 h-[68vh] px-5 pb-8">
+              <div className="flex-1 space-y-4">
+                {cartItems.map((item) => (
+                  <CartItem cart={item} />
+                ))}
+              </div>
+            </ScrollArea>
+            <div className="space-y-4">
+              <Separator />
+              <div className="space-y-1.5 px-5 text-sm">
+                <div className="flex justify-between">
+                  <span>Shipping</span>
+                  <span>Free</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Taxes</span>
+                  <span>Calculated at checkout</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Total</span>
+                  <span>{formatPrice(amountTotal.toFixed(2))}</span>
+                </div>
+              </div>
+              {/* footer */}
+              <SheetFooter className="pt-0">
+                <SheetClose asChild>
+                  <Button asChild className="w-full">
+                    <Link to="/checkout" aria-label="Check Out">
+                      {" "}
+                      Continue to checkout
+                    </Link>
+                  </Button>
+                </SheetClose>
+              </SheetFooter>
+            </div>
+          </>
         ) : (
           <div className="flex h-full flex-col items-center justify-center space-y-1">
             <Icons.cart className="text-muted-foreground mb-4 size-16" />
@@ -51,12 +91,6 @@ function CartSheet() {
             </div>
           </div>
         )}
-        <SheetFooter>
-          <Button type="submit">Save changes</Button>
-          <SheetClose asChild>
-            <Button variant="outline">Close</Button>
-          </SheetClose>
-        </SheetFooter>
       </SheetContent>
     </Sheet>
   );
