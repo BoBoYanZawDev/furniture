@@ -3,15 +3,17 @@ import HomePage from "@/pages/Home";
 import ErrorPage from "@/pages/errors/Error";
 import { createBrowserRouter } from "react-router";
 import { lazyRoute } from "./helper";
+import RouteLoadingFallback from "@/components/RouteLoadingFallback";
+import { homeLoader } from "./loader";
 
 const router = createBrowserRouter([
   {
     path: "/",
     Component: RootLayout,
     ErrorBoundary: ErrorPage,
+    HydrateFallback: RouteLoadingFallback,
     children: [
-      { index: true, Component: HomePage },
-
+      { index: true, Component: HomePage, loader : homeLoader },
       {
         path: "about",
         ...lazyRoute(() => import("@/pages/About")),
@@ -52,10 +54,12 @@ const router = createBrowserRouter([
   },
   {
     path: "/login",
+    HydrateFallback: RouteLoadingFallback,
     ...lazyRoute(() => import("@/pages/auth/Login")),
   },
   {
     path: "/register",
+    HydrateFallback: RouteLoadingFallback,
     ...lazyRoute(() => import("@/pages/auth/Register")),
   },
 ]);
