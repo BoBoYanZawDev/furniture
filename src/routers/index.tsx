@@ -5,6 +5,7 @@ import { createBrowserRouter } from "react-router";
 import { lazyRoute } from "./helper";
 import RouteLoadingFallback from "@/components/RouteLoadingFallback";
 import { homeLoader } from "./loader";
+import { loginAction } from "./action";
 
 const router = createBrowserRouter([
   {
@@ -13,7 +14,7 @@ const router = createBrowserRouter([
     ErrorBoundary: ErrorPage,
     HydrateFallback: RouteLoadingFallback,
     children: [
-      { index: true, Component: HomePage, loader : homeLoader },
+      { index: true, Component: HomePage, loader: homeLoader },
       {
         path: "about",
         ...lazyRoute(() => import("@/pages/About")),
@@ -55,7 +56,7 @@ const router = createBrowserRouter([
   {
     path: "/login",
     HydrateFallback: RouteLoadingFallback,
-    ...lazyRoute(() => import("@/pages/auth/Login")),
+    ...lazyRoute(() => import("@/pages/auth/Login"), { action: loginAction }),
   },
   {
     path: "/register",

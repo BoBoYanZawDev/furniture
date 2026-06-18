@@ -1,4 +1,4 @@
-import { Link } from "react-router";
+import { Link, useSubmit } from "react-router";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -37,6 +37,7 @@ const FormSchema = z.object({
 });
 
 export default function LoginForm() {
+  const submit = useSubmit();
   // const isSubmitting = navigation.state === "submitting";
 
   const form = useForm<z.infer<typeof FormSchema>>({
@@ -48,7 +49,7 @@ export default function LoginForm() {
   });
 
   function onSubmit(values: z.infer<typeof FormSchema>) {
-    console.log(values);
+    submit(values, { method: "post" ,action : "/login" });
   }
 
   return (
@@ -104,7 +105,7 @@ export default function LoginForm() {
 
                   <FormControl>
                     <PasswordInput
-                      // placeholder="********"
+                      placeholder="********"
                       required
                       inputMode="numeric"
                       // minLength={8}
@@ -117,8 +118,8 @@ export default function LoginForm() {
               )}
             />
             <div className="grid gap-4">
-              <Button type="submit" className="mt-2 w-full" asChild>
-                <Link to="/">Sign In</Link>
+              <Button type="submit" className="mt-2 w-full">
+                Sign In
               </Button>
               <div className="after:border-border relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t">
                 <span className="bg-background text-muted-foreground relative z-10 px-2">

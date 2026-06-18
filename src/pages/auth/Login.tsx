@@ -8,7 +8,7 @@ function Login() {
   return (
     <div className="relative overflow-hidden">
       <Link
-        to="/"
+        to="#"
         className="top-6 text-foreground/80 hover:text-foreground transition-color fixed left-8 flex items-center text-lg font-bold tracking-tight"
       >
         <Icons.logo className="mr-2 size-6" aria-hidden="true" />
