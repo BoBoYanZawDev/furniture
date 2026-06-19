@@ -5,7 +5,7 @@ import { createBrowserRouter } from "react-router";
 import { lazyRoute } from "./helper";
 import RouteLoadingFallback from "@/components/RouteLoadingFallback";
 import { homeLoader } from "./loader";
-import { loginAction } from "./action";
+import { loginAction, logoutAction } from "./action";
 
 const router = createBrowserRouter([
   {
@@ -57,6 +57,10 @@ const router = createBrowserRouter([
     path: "/login",
     HydrateFallback: RouteLoadingFallback,
     ...lazyRoute(() => import("@/pages/auth/Login"), { action: loginAction }),
+  },
+  {
+    path : "/logout",
+    action : logoutAction,
   },
   {
     path: "/register",

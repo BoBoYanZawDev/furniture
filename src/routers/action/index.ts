@@ -10,18 +10,33 @@ export const loginAction = async ({ request }: ActionFunctionArgs) => {
     password: formData.get("password"),
   };
   try {
-   const response = await authApi.post("login", authData);
-    if(response.status !== 200){
-        return {error : response.data || "Login Failed!" };
+    const response = await authApi.post("login", authData);
+    if (response.status !== 200) {
+      return { error: response.data || "Login Failed!" };
     }
-    const redirectTo =  new URL(request.url).searchParams.get("redirect") || "/";
-    console.log(redirectTo)
+    const redirectTo = new URL(request.url).searchParams.get("redirect") || "/";
     return redirect(redirectTo);
   } catch (err) {
-    if(err instanceof AxiosError){
-            return err.response?.data || {error : "Login Failed!"}
+    if (err instanceof AxiosError) {
+      return err.response?.data || { error: "Login Failed!" };
     }
     console.log("Login Api Error" + err);
+    throw err;
+  }
+};
+
+export const logoutAction = async () => {
+  try {
+    const response = await api.post("logout");
+    if (response.status !== 200) {
+      return { error: response.data || "Logout Failed!" };
+    }
+    return redirect("/login");
+  } catch (err) {
+    if (err instanceof AxiosError) {
+      return err.response?.data || { error: "Logout Failed!" };
+    }
+    console.log("Logout Api Error" + err);
     throw err;
   }
 };
