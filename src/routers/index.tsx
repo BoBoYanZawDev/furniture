@@ -6,6 +6,7 @@ import { lazyRoute } from "./helper";
 import RouteLoadingFallback from "@/components/RouteLoadingFallback";
 import { homeLoader, loginLoader } from "./loader";
 import { loginAction, logoutAction } from "./action";
+import AuthRootLayout from "@/layouts/AuthRootLayout";
 
 const router = createBrowserRouter([
   {
@@ -55,8 +56,12 @@ const router = createBrowserRouter([
   },
   {
     path: "/login",
+    ErrorBoundary: ErrorPage,
     HydrateFallback: RouteLoadingFallback,
-    ...lazyRoute(() => import("@/pages/auth/Login"), { action: loginAction , loader : loginLoader}),
+    ...lazyRoute(() => import("@/pages/auth/Login"), {
+      action: loginAction,
+      loader: loginLoader,
+    }),
   },
   {
     path: "/logout",
@@ -65,8 +70,23 @@ const router = createBrowserRouter([
   },
   {
     path: "/register",
+    ErrorBoundary: ErrorPage,
     HydrateFallback: RouteLoadingFallback,
-    ...lazyRoute(() => import("@/pages/auth/Register")),
+    Component: AuthRootLayout,
+    children: [
+      {
+        index: true,
+        ...lazyRoute(() => import("@/pages/auth/signup/SignUp")),
+      },
+      {
+        path: "otp",
+        ...lazyRoute(() => import("@/pages/auth/signup/Otp")),
+      },
+      {
+        path: "confirm-password",
+        ...lazyRoute(() => import("@/pages/auth/signup/ConfirmPassword")),
+      },
+    ],
   },
 ]);
 
