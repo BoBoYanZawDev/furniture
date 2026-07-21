@@ -1,4 +1,4 @@
-import { Link, useSubmit } from "react-router";
+import { Link, useSubmit, useNavigation, useActionData } from "react-router";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -22,6 +22,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import { Spinner } from "../ui/spinner";
 
 const FormSchema = z.object({
   phone: z
@@ -38,7 +39,12 @@ const FormSchema = z.object({
 
 export default function LoginForm() {
   const submit = useSubmit();
-  // const isSubmitting = navigation.state === "submitting";
+  const navigation = useNavigation();
+  const isSubmitting = navigation.state === "submitting";
+  const actionData = useActionData() as {
+    error?: string;
+    message: string;
+  };
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
@@ -49,7 +55,7 @@ export default function LoginForm() {
   });
 
   function onSubmit(values: z.infer<typeof FormSchema>) {
-    submit(values, { method: "post" ,action : "/login" });
+    submit(values, { method: "post", action: "/login" });
   }
 
   return (
@@ -117,9 +123,19 @@ export default function LoginForm() {
                 </FormItem>
               )}
             />
+            {actionData && actionData.message && (
+              <p className="text-xs text-red-400">{actionData.message}</p>
+            )}
             <div className="grid gap-4">
               <Button type="submit" className="mt-2 w-full">
-                Sign In
+                {isSubmitting ? (
+                  <span className="flex items-center gap-3">
+                    <Spinner />
+                    Submitting
+                  </span>
+                ) : (
+                  "Sign In"
+                )}
               </Button>
               <div className="after:border-border relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t">
                 <span className="bg-background text-muted-foreground relative z-10 px-2">
