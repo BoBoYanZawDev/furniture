@@ -1,10 +1,10 @@
 import RootLayout from "@/layouts/RootLayout";
 import HomePage from "@/pages/Home";
 import ErrorPage from "@/pages/errors/Error";
-import { createBrowserRouter } from "react-router";
+import { createBrowserRouter, redirect } from "react-router";
 import { lazyRoute } from "./helper";
 import RouteLoadingFallback from "@/components/RouteLoadingFallback";
-import { homeLoader } from "./loader";
+import { homeLoader, loginLoader } from "./loader";
 import { loginAction, logoutAction } from "./action";
 
 const router = createBrowserRouter([
@@ -56,11 +56,12 @@ const router = createBrowserRouter([
   {
     path: "/login",
     HydrateFallback: RouteLoadingFallback,
-    ...lazyRoute(() => import("@/pages/auth/Login"), { action: loginAction }),
+    ...lazyRoute(() => import("@/pages/auth/Login"), { action: loginAction , loader : loginLoader}),
   },
   {
-    path : "/logout",
-    action : logoutAction,
+    path: "/logout",
+    action: logoutAction,
+    loader: () => redirect("/"),
   },
   {
     path: "/register",
