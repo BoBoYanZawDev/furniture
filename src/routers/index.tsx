@@ -76,7 +76,9 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        ...lazyRoute(() => import("@/pages/auth/signup/SignUp")),
+        ...lazyRoute(() => import("@/pages/auth/signup/SignUp"), {
+          loader: loginLoader,
+        }),
       },
       {
         path: "otp",

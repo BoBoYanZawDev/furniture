@@ -2,6 +2,7 @@ import api, { authApi } from "@/api";
 import { redirect } from "react-router";
 import type { ActionFunctionArgs } from "react-router";
 import { AxiosError } from "axios";
+import useAuthStore, { Status } from "@/store/authStore";
 
 export const loginAction = async ({ request }: ActionFunctionArgs) => {
   const formData = await request.formData();
@@ -48,6 +49,29 @@ export const logoutAction = async () => {
       return err.response?.data || { error: "Logout Failed!" };
     }
     console.log("Logout Api Error" + err);
+    throw err;
+  }
+};
+
+
+export const registerAction = async ({ request }: ActionFunctionArgs) => {
+  const authStore = useAuthStore.getState();
+  const formData = await request.formData();
+  const credentials = Object.fromEntries(formData);
+  try {
+    const response = await authApi.post("register", credentials);
+    if (response.status !== 200) {
+      return { error: response?.data?.message || "Register Failed!" };
+    }
+    const data = response.data ;
+    authStore.setAuth(data.phone_no , data.token, Status.otp);
+
+    return redirect("/register/otp");
+  } catch (err) {
+    if (err instanceof AxiosError) {
+      return err.response?.data || { error: "Register Failed!" };
+    }
+    console.log("Login Api Error" + err);
     throw err;
   }
 };
