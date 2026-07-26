@@ -64,7 +64,7 @@ export const registerAction = async ({ request }: ActionFunctionArgs) => {
       return { error: response?.data?.message || "Register Failed!" };
     }
     const data = response.data ;
-    authStore.setAuth(data.phone_no , data.token, Status.otp);
+    authStore.setAuth(data.phone , data.token, Status.otp);
 
     return redirect("/register/otp");
   } catch (err) {
@@ -72,6 +72,62 @@ export const registerAction = async ({ request }: ActionFunctionArgs) => {
       return err.response?.data || { error: "Register Failed!" };
     }
     console.log("Login Api Error" + err);
+    throw err;
+  }
+};
+
+
+export const otpAction = async ({ request }: ActionFunctionArgs) => {
+  const authStore = useAuthStore.getState();
+  const formData = await request.formData();
+
+  const credentials = {
+    phone : authStore.phone_no ,
+    token : authStore.token,
+    otp : formData.get("otp")
+  };
+  try {
+    const response = await authApi.post("verify-otp", credentials);
+    if (response.status !== 200) {
+      return { error: response?.data?.message || "Verify OTP Failed!" };
+    }
+    const data = response.data ;
+    authStore.setAuth(data.phone , data.verifyToken, Status.confirm);
+
+    return redirect("/register/confirm-password");
+  } catch (err) {
+    if (err instanceof AxiosError) {
+      return err.response?.data || { error: "Sending OTP Failed!" };
+    }
+    console.log("Sending OTP Error" + err);
+    throw err;
+  }
+};
+
+
+export const confirmAction = async ({ request }: ActionFunctionArgs) => {
+  const authStore = useAuthStore.getState();
+  const formData = await request.formData();
+
+  const credentials = {
+    phone : authStore.phone_no ,
+    token : authStore.token,
+    password : formData.get("password")
+  };
+  try {
+    const response = await authApi.post("confirm-password", credentials);
+    if (response.status !== 201 && response.status !== 200) {
+      return { error: response?.data?.message || "Registration Failed!" };
+    }
+    authStore.clearAuth();
+    
+    return redirect("/");
+
+  } catch (err) {
+    if (err instanceof AxiosError) {
+      return err.response?.data || { error: "Registration Failed!" };
+    }
+    console.log("Sending OTP Error" + err);
     throw err;
   }
 };

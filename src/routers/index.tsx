@@ -4,8 +4,14 @@ import ErrorPage from "@/pages/errors/Error";
 import { createBrowserRouter, redirect } from "react-router";
 import { lazyRoute } from "./helper";
 import RouteLoadingFallback from "@/components/RouteLoadingFallback";
-import { homeLoader, loginLoader } from "./loader";
-import { loginAction, logoutAction } from "./action";
+import { confirmLoader, homeLoader, loginLoader, otpLoader } from "./loader";
+import {
+  confirmAction,
+  loginAction,
+  logoutAction,
+  otpAction,
+  registerAction,
+} from "./action";
 import AuthRootLayout from "@/layouts/AuthRootLayout";
 
 const router = createBrowserRouter([
@@ -77,16 +83,23 @@ const router = createBrowserRouter([
       {
         index: true,
         ...lazyRoute(() => import("@/pages/auth/signup/SignUp"), {
+          action: registerAction,
           loader: loginLoader,
         }),
       },
       {
         path: "otp",
-        ...lazyRoute(() => import("@/pages/auth/signup/Otp")),
+        ...lazyRoute(() => import("@/pages/auth/signup/Otp"), {
+          loader: otpLoader,
+          action: otpAction,
+        }),
       },
       {
         path: "confirm-password",
-        ...lazyRoute(() => import("@/pages/auth/signup/ConfirmPassword")),
+        ...lazyRoute(() => import("@/pages/auth/signup/ConfirmPassword"), {
+          loader: confirmLoader,
+          action: confirmAction,
+        }),
       },
     ],
   },
