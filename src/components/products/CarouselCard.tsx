@@ -8,12 +8,12 @@ import {
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 import type { Product } from "@/types";
+import { getImageUrl } from "@/lib/imageUrl";
 import { Link } from "react-router";
 
 interface ProductProps {
   products: Product[];
 }
-
 export default function CarouselCard({ products }: ProductProps) {
   const plugin = React.useRef(
     Autoplay({ delay: 3000, stopOnInteraction: true }),
@@ -31,9 +31,11 @@ export default function CarouselCard({ products }: ProductProps) {
           <CarouselItem key={product.id} className="pl-1 lg:basis-1/3">
             <div className="flex gap-4 p-4 lg:px-4">
               <img
-                src={product.images[0]}
+                src={getImageUrl(product.images[0]?.path)}
                 alt={product.name}
-                className="size-28 rounded-md"
+                loading="lazy"
+                decoding="async"
+                className="h-28 rounded-md"
               />
               <div>
                 <h3 className="text-sm font-bold">{product.name}</h3>

@@ -13,12 +13,17 @@ export type MainNavItem = NavItemWithChildren;
 
 export type NavItemOrg = NavItem;
 
+type Image = {
+    id : number ;
+    path : string ;
+}
+
 // for home screen
 export type Product = {
   id: string;
   name: string;
   description: string;
-  images: string[];
+  images: Image[];
   categoryId: string;
   price: number;
   discount: number;
@@ -27,9 +32,13 @@ export type Product = {
   status: string;
 };
 
+type author = {
+  fullName : string
+}
+
 export type Post = {
   id: string;
-  author: string;
+  author: author;
   title: string;
   content: string;
   image: string;

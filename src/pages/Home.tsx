@@ -1,13 +1,17 @@
-import { Link } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import Couch from "@/data/images/couch.png";
 import { Button } from "@/components/ui/button";
 import CarouselCard from "@/components/products/CarouselCard";
-import { products } from "@/data/products";
+// import { products } from "@/data/products";
 import Title from "@/components/Title";
 import BlogCard from "@/components/blogs/BlogCard";
-import { posts } from "@/data/posts";
+// import { posts } from "@/data/posts";
 import ProductCard from "@/components/products/ProductCard";
+import type { Product } from "@/types";
 function Home() {
+  const { productsData, postsData} = useLoaderData();
+  const products = productsData.products;
+  const posts = postsData.posts ;
   const recentBlogs = posts.slice(0, 3);
   const featProduct = products.slice(0, 4);
   return (
@@ -54,7 +58,7 @@ function Home() {
           sideText="View All Products"
         />
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        {featProduct.map((product) => (
+        {featProduct.map((product : Product) => (
             <ProductCard product={product}  key={product.id}/>
         ))}
         </div>
