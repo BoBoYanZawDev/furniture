@@ -21,7 +21,11 @@ const router = createBrowserRouter([
     ErrorBoundary: ErrorPage,
     HydrateFallback: RouteLoadingFallback,
     children: [
-      { index: true, Component: HomePage, loader: homeLoader },
+      {
+        index: true,
+        Component: HomePage,
+        //  loader: homeLoader
+      },
       {
         path: "about",
         ...lazyRoute(() => import("@/pages/About")),

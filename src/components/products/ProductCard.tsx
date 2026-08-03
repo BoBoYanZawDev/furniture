@@ -29,7 +29,7 @@ function ProductCard({ product, className }: productProp) {
             <img
               src={getImageUrl(String(product.images[0].path))}
               alt={product.name}
-              className="size-full object-cover"
+              className="size-full object-contain"
               loading="lazy"
             />
           </AspectRatio>

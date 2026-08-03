@@ -8,10 +8,61 @@ import BlogCard from "@/components/blogs/BlogCard";
 // import { posts } from "@/data/posts";
 import ProductCard from "@/components/products/ProductCard";
 import type { Product } from "@/types";
+import { useQuery } from "@tanstack/react-query";
+import { postsQuery, productsQuery } from "@/api/query";
+import { Skeleton } from "@/components/ui/skeleton";
 function Home() {
-  const { productsData, postsData} = useLoaderData();
+  // const { productsData, postsData } = useLoaderData();
+  const {
+    data: productsData,
+    isLoading: isLoadingProducts,
+    isError: isErrorProducts,
+    error: errorProducts,
+    refetch: refreshProducts,
+  } = useQuery(productsQuery("?limit=8"));
+  const {
+    data: postsData,
+    isLoading: isLoadingPosts,
+    isError: isErrorPosts,
+    error: errorPosts,
+    refetch: refreshPosts,
+  } = useQuery(postsQuery("?limit=3"));
+
+  if (isLoadingProducts || isLoadingPosts) {
+    return (
+      <div className="flex min-h-screen items-center justify-center">
+        <div className="flex w-full max-w-xs flex-col gap-2">
+          <Skeleton className="h-4 w-full" />
+          <Skeleton className="h-4 w-full" />
+          <Skeleton className="h-4 w-3/4" />
+        </div>
+      </div>
+    );
+  }
+
+  if (isErrorProducts || isErrorPosts) {
+    return (
+      <div className="flex min-h-screen items-center justify-center">
+        <div className="flex flex-col items-center gap-4">
+          <p className="text-red-500 text-center">
+            Error: {errorProducts?.message || errorPosts?.message}
+          </p>
+          <Button
+          className="mt-4 "
+            onClick={() => {
+              refreshProducts();
+              refreshPosts();
+            }}
+          >
+            Retry
+          </Button>
+        </div>
+      </div>
+    );
+  }
+
   const products = productsData.products;
-  const posts = postsData.posts ;
+  const posts = postsData.posts;
   const recentBlogs = posts.slice(0, 3);
   const featProduct = products.slice(0, 4);
   return (
@@ -57,10 +108,10 @@ function Home() {
           href="/products"
           sideText="View All Products"
         />
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        {featProduct.map((product : Product) => (
-            <ProductCard product={product}  key={product.id}/>
-        ))}
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+          {featProduct.map((product: Product) => (
+            <ProductCard product={product} key={product.id} />
+          ))}
         </div>
       </section>
 
