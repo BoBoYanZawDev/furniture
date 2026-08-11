@@ -24,7 +24,7 @@ const router = createBrowserRouter([
       {
         index: true,
         Component: HomePage,
-        //  loader: homeLoader
+         loader: homeLoader
       },
       {
         path: "about",
