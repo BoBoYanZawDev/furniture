@@ -15,7 +15,7 @@ function BlogDetail() {
 
   const { data: postData } = useSuspenseQuery(onePostQuery(Number(postId)));
   const { data: postsData } = useSuspenseQuery(postsQuery("?limit=6"));
-  const post = postData.post;
+  const post : Post = postData.post;
   const posts = postsData.posts;
   return (
     <div className="container mx-auto">
@@ -40,6 +40,8 @@ function BlogDetail() {
               <img
                 src={getImageUrl(post.image)}
                 alt={post.title}
+                loading="lazy"
+                decoding="async"
                 className="w-full rounded-xl"
               />
               <RichTextRenderer content={post.body} className="my-8" />
