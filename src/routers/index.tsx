@@ -4,7 +4,14 @@ import ErrorPage from "@/pages/errors/Error";
 import { createBrowserRouter, redirect } from "react-router";
 import { lazyRoute } from "./helper";
 import RouteLoadingFallback from "@/components/RouteLoadingFallback";
-import { confirmLoader, homeLoader, loginLoader, otpLoader } from "./loader";
+import {
+  blogInfiniteLoader,
+  confirmLoader,
+  homeLoader,
+  loginLoader,
+  otpLoader,
+  postLoader,
+} from "./loader";
 import {
   confirmAction,
   loginAction,
@@ -24,7 +31,7 @@ const router = createBrowserRouter([
       {
         index: true,
         Component: HomePage,
-         loader: homeLoader
+        loader: homeLoader,
       },
       {
         path: "about",
@@ -37,11 +44,15 @@ const router = createBrowserRouter([
         children: [
           {
             index: true,
-            ...lazyRoute(() => import("@/pages/blogs/Blog")),
+            ...lazyRoute(() => import("@/pages/blogs/Blog"), {
+              loader: blogInfiniteLoader,
+            }),
           },
           {
             path: ":postId",
-            ...lazyRoute(() => import("@/pages/blogs/BlogDetail")),
+            ...lazyRoute(() => import("@/pages/blogs/BlogDetail"),{
+              loader: postLoader
+            }),
           },
         ],
       },

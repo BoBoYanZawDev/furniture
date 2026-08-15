@@ -17,7 +17,7 @@ function BlogCard({ posts }: postProps) {
             <span>
               by
               <span className="mx-1 font-semibold">{post.author.fullName}</span>on
-              <span className="ms-1 font-semibold">{post.updated_at}</span>
+              <span className="ms-1 font-semibold">{post.updatedAt}</span>
             </span>
           </div>
         </Link>

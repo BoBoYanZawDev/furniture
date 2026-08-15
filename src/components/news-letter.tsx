@@ -33,7 +33,6 @@ export default function NewsLetterForm() {
   });
 
   function onSubmit(values: z.infer<typeof emailSchema>) {
-    console.log(values);
     setLoading(true);
     // Call api
   }

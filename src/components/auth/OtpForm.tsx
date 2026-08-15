@@ -47,7 +47,6 @@ export function InputOTPForm({
   });
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
-    console.log(data);
     submit(data, { method: "POST", action: "/register/otp" });
   }
 

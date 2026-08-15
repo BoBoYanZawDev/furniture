@@ -43,7 +43,7 @@ export type Post = {
   content: string;
   image: string;
   body: string;
-  updated_at: string;
+  updatedAt: string;
   tags: string[];
 };
 
