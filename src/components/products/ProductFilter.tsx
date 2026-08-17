@@ -13,6 +13,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import type { Category } from "@/types";
+import { data } from "react-router";
 
 interface FilterProps {
   categories: Category[];
@@ -38,7 +39,8 @@ export default function ProductFilter({ filterList }: ProductFilterProps) {
   });
 
   const onSubmit = (data: z.infer<typeof FormSchema>) =>
-    console.log("Submit data ... " + data);
+    // console.log("Submit data ... " + data);
+  console.log(data)
 
   return (
     <Form {...form}>
@@ -80,7 +82,7 @@ export default function ProductFilter({ filterList }: ProductFilterProps) {
                           />
                         </FormControl>
                         <FormLabel className="text-sm font-normal">
-                          {item.label}
+                          {item.name}
                         </FormLabel>
                       </FormItem>
                     );
@@ -128,7 +130,7 @@ export default function ProductFilter({ filterList }: ProductFilterProps) {
                           />
                         </FormControl>
                         <FormLabel className="text-sm font-normal">
-                          {item.label}
+                          {item.name}
                         </FormLabel>
                       </FormItem>
                     );

@@ -54,7 +54,7 @@ export type postProps = {
 // for product
 export type Category = {
   id: string;
-  label: string;
+  name: string;
 };
 
 export type User = {

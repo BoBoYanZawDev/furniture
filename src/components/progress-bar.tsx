@@ -10,7 +10,7 @@ export default function ProgressBar() {
   if (!isLoading) return null;
 
   return (
-    <div className="fixed top-0 left-0 z-50 h-1 w-full overflow-hidden bg-gray-200">
+    <div className="fixed top-0 left-0 z-50 h-0.5 w-full overflow-hidden bg-gray-200">
       <div className="animate-progress absolute h-full w-2/3 bg-green-600" />
     </div>
   );

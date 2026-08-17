@@ -11,6 +11,7 @@ import {
   loginLoader,
   otpLoader,
   postLoader,
+  productLoader,
 } from "./loader";
 import {
   confirmAction,
@@ -63,7 +64,9 @@ const router = createBrowserRouter([
         children: [
           {
             index: true,
-            ...lazyRoute(() => import("@/pages/products/Product")),
+            ...lazyRoute(() => import("@/pages/products/Product"),{
+              loader : productLoader
+            }),
           },
           {
             path: ":productId",

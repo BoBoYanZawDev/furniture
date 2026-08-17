@@ -12,7 +12,7 @@ function Header() {
     description: siteConfig.description,
   };
   return (
-    <header className="fixed top-0 z-50 w-full border-b bg-white/90 dark:bg-black/90">
+    <header className="fixed top-0 z-50 w-full border-b bg-white dark:bg-black">
       <nav className="container mx-auto flex h-16 items-center justify-between">
         <ProgressBar />
         <MainNavigation items={siteConfig.mainNav} titleData={titleData} />

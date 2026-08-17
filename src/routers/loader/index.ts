@@ -1,6 +1,8 @@
-import api, { authApi } from "@/api/index";
+import { authApi } from "@/api/index";
 import {
+  categoryTypeQuery,
   infinitePostsQuery,
+  infiniteProductsQuery,
   onePostQuery,
   postsQuery,
   productsQuery,
@@ -79,3 +81,9 @@ export const postLoader = async ({ params }: LoaderFunctionArgs) => {
   await queryClient.ensureQueryData(onePostQuery(postId));
   return { postId };
 };
+
+export const productLoader = async() => {
+    await queryClient.ensureQueryData(categoryTypeQuery());
+    await queryClient.prefetchInfiniteQuery(infiniteProductsQuery());
+    return null;
+}

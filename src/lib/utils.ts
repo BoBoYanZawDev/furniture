@@ -15,3 +15,13 @@ export function formatPrice(
     notation: opts.notation ?? "compact",
   }).format(Number(price));
 }
+
+export const parseIds = (rawValue: string | null): string[] => {
+  if (!rawValue) return [];
+
+  return decodeURIComponent(rawValue)
+    .split(",")
+    .map((dataId) => Number(dataId.trim()))
+    .filter((dataId) => !isNaN(dataId))
+    .map((dataId) => dataId.toString());
+};

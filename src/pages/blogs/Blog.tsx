@@ -4,6 +4,7 @@ import EmptyData from "@/components/empty-data";
 import ErrorResult from "@/components/ErrorResult";
 import RouteLoadingFallback from "@/components/RouteLoadingFallback";
 import { Button } from "@/components/ui/button";
+import { Spinner } from "@/components/ui/spinner";
 import { useInfiniteQuery } from "@tanstack/react-query";
 // import { posts } from "@/data/posts"
 
@@ -45,7 +46,7 @@ function Blog() {
           disabled={!hasNextPage || isFetchingNextPage}
           variant={!hasNextPage ? "ghost" : "secondary"}
         >
-          {isFetchingNextPage ? "Loading..." : hasNextPage ? "Load More" : "Nothing more to load"}
+          {isFetchingNextPage ? (<Spinner />) : hasNextPage ? "Load More" : "Nothing more to load"}
         </Button>
       </div>
       <div>
