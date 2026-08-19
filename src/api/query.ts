@@ -81,7 +81,7 @@ const fetchInfiniteProducts = async ({
   categories = null,
   types = null,
 }: FetchInfiniteProductsType) => {
-  let q = pageParam ? `?limit9&cursor=${pageParam}` : "?limit9";
+  let q = pageParam ? `?limit=9&cursor=${pageParam}` : "?limit=9";
   if (categories) q += `&category=${categories}`;
   if (types) q += `&type=${types}`;
   const response = await api.get(`user/products${q}`);

@@ -13,7 +13,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import type { Category } from "@/types";
-import { data } from "react-router";
+// import { data } from "react-router";
 
 interface FilterProps {
   categories: Category[];
@@ -22,6 +22,9 @@ interface FilterProps {
 
 interface ProductFilterProps {
   filterList: FilterProps;
+  selectedCategory: string[];
+  selectedType: string[];
+  handleFilterChange: (categories: string[], types: string[]) => void;
 }
 
 const FormSchema = z.object({
@@ -29,18 +32,23 @@ const FormSchema = z.object({
   types: z.array(z.string()),
 });
 
-export default function ProductFilter({ filterList }: ProductFilterProps) {
+export default function ProductFilter({
+  filterList,
+  handleFilterChange,
+  selectedCategory,
+  selectedType,
+}: ProductFilterProps) {
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
-      categories: [],
-      types: [],
+      categories: selectedCategory,
+      types: selectedType,
     },
   });
 
   const onSubmit = (data: z.infer<typeof FormSchema>) =>
+    handleFilterChange(data.categories, data.types);
     // console.log("Submit data ... " + data);
-  console.log(data)
 
   return (
     <Form {...form}>
